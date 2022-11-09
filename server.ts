@@ -602,7 +602,9 @@ restoreOverwrittenFilesWithOriginals().then(() => {
 
   /* Error Handling */
   app.use(verify.errorHandlingChallenge())
-  app.use(errorhandler())
+  if (process.env.NODE_ENV === 'development'){
+    app.use(errorhandler())
+  }
 }).catch((err) => {
   console.error(err)
 })
