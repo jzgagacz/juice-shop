@@ -103,6 +103,9 @@ export class LoginComponent implements OnInit {
   }
 
   googleLogin () {
-    this.windowRefService.nativeWindow.location.replace(`${oauthProviderUrl}?client_id=${this.clientId}&response_type=token&scope=email&redirect_uri=${this.redirectUri}`)
+    var st = Math.floor(Math.random() * 100000000) + 1
+    var state = st.toString()
+    this.cookieService.put('state', state)
+    this.windowRefService.nativeWindow.location.replace(`${oauthProviderUrl}?client_id=${this.clientId}&state=${state}&response_type=token&scope=email&redirect_uri=${this.redirectUri}`)
   }
 }
